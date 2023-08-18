@@ -1,0 +1,181 @@
+.search-panel {
+    display: flex;
+    align-items: center;
+    padding: .875rem 1.5rem;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--bordColor);
+    min-height: 72px;
+
+    .search-box {
+        margin-right: auto;
+    }
+    .btn {
+        margin-left: .5rem;
+        
+    }
+    .nav-links {
+        display: flex;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        position: relative;
+        .prepend, .apend {
+            position: absolute;
+        }
+        .prepend {
+            margin: 1px 0 0 8px;
+            font-size: 19px;
+            color: var(--txtColor2);
+        }
+        .apend {
+            right: 4px;
+            background-color: var(--white);
+            border-radius: 5px;
+            padding: 4px;
+            span {
+                font-size: 20px;
+                margin: 2px 0 0 2px;
+                color: #999;
+            }
+        }
+
+        input {
+            display: block;
+            padding: auto;
+            background-color:var(--pageBg);
+            border: 0;
+            border-radius: 5px;
+            padding: .75rem 2rem;
+            font-size: 14px;
+            min-width: 220px;
+
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+}
+.nav-links-menu {
+    display: none;
+}
+.dd-wrp {
+    position: relative;
+    .dropdown {
+        min-width: 100%;
+        position: absolute;
+        flex-direction: column;
+        border: 1px solid var(--bordColor);
+        translate: 0 8%;
+        border-radius: 8px;
+        background-color: var(--white);
+        padding: 4px 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    
+        &.open {
+            opacity: 1;
+            &:before {
+                border-style: solid;
+                border-width: 1px 1px 0 0;
+                content: '';
+                display: inline-block;
+                position: absolute;
+                height: 6px;
+                left: calc(50% - 4px);
+                top: -4px;
+                transform: rotate(-45deg);
+                vertical-align: top;
+                width: 6px;
+                background: var(--white);
+                border-color: var(--bordColor);
+            }
+        }
+        .btn {
+            margin: 0;
+            border: 0;
+            background-color: transparent;
+            color: var(--txtColor1);
+            border-radius: 0;
+            &:hover {
+                background-color: var(--txtColor3);
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 767px) {
+ 
+    .search-panel {
+        padding-right: .2rem;
+    }
+    .search-panel .nav-links {
+        position: absolute;
+        flex-direction: column;
+        border: 1px solid var(--bordColor);
+        right: 8px;
+        top: 52px;
+        border-radius: 8px;
+        background-color: var(--white);
+        padding: 4px 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+
+        &.showMenu {
+            opacity: 1;
+            &:before {
+                border-style: solid;
+                border-width: 1px 1px 0 0;
+                content: '';
+                display: inline-block;
+                position: absolute;
+                height: 6px;
+                right: 10px;
+                top: -4px;
+                transform: rotate(-45deg);
+                vertical-align: top;
+                width: 6px;
+                background: var(--white);
+                border-color: var(--bordColor);
+            }
+        }
+        .btn {
+            margin: 0;
+            border: 0;
+            background-color: transparent;
+            color: var(--txtColor1);
+            border-radius: 0;
+            &:hover {
+                background-color: var(--txtColor3);
+            }
+        }
+    }
+    .dd-wrp {
+        .dropdown {
+            translate: -108% -25%;
+            &.open:before {
+                left: calc(100% - 2px);
+                top: 15px;
+                transform: rotate(45deg);
+            }
+        }
+    } 
+    .search-panel .search-box {
+        width: calc(100vw - 60px);
+
+    }
+    .search-panel .search-box input {
+        width: calc(100% - 1px);
+    }
+
+
+    .nav-links-menu {
+        display: block;
+        cursor: pointer;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+}

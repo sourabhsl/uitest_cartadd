@@ -1,0 +1,180 @@
+.side-bar {
+    width: 280px;
+    border-right: 1px solid var(--bordColor);
+    background-color: var(--white);
+    left: 0;
+    visibility: visible;
+    transition: width 0.5s ease;
+    position: relative;
+
+
+    &.collapsed {
+        width: 0px;
+        visibility: hidden;
+
+        .toggle-sidebar {
+            right: -16px;
+            border-radius: 0 3px 3px 0;
+            visibility: visible;
+            span {
+                transform: rotate(0deg);
+            }
+        }
+        nav ul a, nav li a {
+            opacity: 0;
+        }
+    }
+
+    .toggle-sidebar {
+        position: absolute;
+        right: 0;
+        top: 20px;
+        background-color: var(--txtColor3);
+        cursor: pointer;
+        height: 32px;
+        width: 16px;
+        text-align: center;
+        border-radius: 3px 0 0 3px;
+        span {
+            display: inline-block;
+            transform: rotate(-180deg);
+            font-size: 16px;
+            color: var(--black);
+            margin-top: 8px;
+        }
+        &:hover {
+            background-color: var(--bordColor);
+        }
+    }
+
+    
+    .logo-wrp {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--bordColor);
+        min-height: 72px;
+
+
+        .logo {
+            color: #CD5360;
+            margin-right: .5rem;
+        }
+    }
+
+    .filter-section {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--bordColor);
+
+        .burger-img {
+            margin-right: .625rem;
+        }
+        .filter-link {
+            margin-left: auto;
+            margin-bottom: auto;
+            display: flex;
+            align-items: center;
+            span {margin-right: .25rem;}
+        }
+    }
+
+    nav {
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--bordColor);
+
+        .nav-title {
+            display: flex;
+            align-items: center;
+            padding:0 1rem;
+            margin-bottom: .75rem;
+            color: var(--txtColor2);
+
+
+            span {
+                margin-left: auto;
+            }
+        }
+
+        ul, li {
+            margin: 0;
+            list-style: none;
+            padding: 0;
+            a {
+                display: block;
+                color: var(--txtColor2);
+                text-decoration: none;
+                padding: .25rem .875rem;
+                margin: .5rem 0;
+                display: flex;
+                align-items: center;
+                span {margin-right: .5rem; font-size: 1.26rem}
+                border-left: .125rem solid var(--white);
+                transition: all 0.3s ease;
+
+                &:hover, &.active {
+                    color: #CD5360;
+                }
+                &.active {
+                    border-left-color:#CD5360 ;
+                }
+                em {
+                    font-style: normal;
+                    margin-left: auto;
+                    background: rgba(188,88,88,.15);
+                    font-size: 12px;
+                    color: #CD5360;
+                    display: inline-block;
+                    padding: 3px 8px;
+                    border-radius: 3px;
+
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@media screen and (max-width: 991px) {
+    .side-bar {
+        position: fixed;
+        width: 0px;
+        visibility: hidden;
+        z-index: 1;
+
+        .nav-wrp {
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+        }
+
+        .toggle-sidebar {
+            right: -16px;
+            border-radius: 0 3px 3px 0;
+            visibility: visible;
+            span {
+                transform: rotate(0deg);
+            }
+        }
+
+        &.collapsed {
+            width: 280px;
+            visibility: visible;
+            height: 100%;
+    
+            .toggle-sidebar {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+                visibility: visible;
+                span {
+                    transform: rotate(-180deg);
+                }
+            }
+            nav ul a, nav li a {
+                opacity: 1;
+            }
+        }
+    }
+}
