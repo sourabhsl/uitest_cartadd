@@ -97,6 +97,14 @@ const Shop = () => {
         </div>
     ));
 
+    const [counter, setCounter] = useState(1);
+    const incrementCounter = () => setCounter(counter + 1);
+    let decrementCounter = () => setCounter(counter - 1);
+       
+        if(counter<=1) {
+            decrementCounter = () => setCounter(1);
+        }
+
     const cartItems = cart.map((el) => (
         <div key={el.id} className="card">
             
@@ -108,7 +116,9 @@ const Shop = () => {
             <div className="quantity">
                 <a href="#."  onClick={() => removeFromCart(el)}><span class="material-symbols-outlined f-14">close</span></a>
                 <div className="number">
-                    {/* <a href="#.">-</a> 0 <a href="#.">+</a> */}
+                    <span class="material-symbols-outlined" onClick={decrementCounter}>add_box</span>
+                    <em className="count">{counter}</em>
+                    <span class="material-symbols-outlined" onClick={incrementCounter}>add_box</span>
                 </div>
             </div>
             

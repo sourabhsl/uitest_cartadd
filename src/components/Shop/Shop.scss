@@ -109,7 +109,19 @@
                 text-align: right;
                 .number {
                     margin-top: auto;
-                    min-width: 40px;
+                    // width: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: end;
+                    span {
+                        cursor: pointer;
+                        font-size: 18px;
+                        color: var(--txtColor2);
+                        &:hover {
+                            color: #CD5360;
+                        }
+                    }
+                    em {font-style: normal; margin: 0 3px; font-size: 12px; font-weight: 500;}
                 }
             }
         }
