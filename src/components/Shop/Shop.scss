@@ -115,13 +115,16 @@
                     justify-content: end;
                     span {
                         cursor: pointer;
-                        font-size: 18px;
+                        font-size: 12px;
                         color: var(--txtColor2);
+                        border: 1px solid var(--txtColor2);
+                        border-radius: 2px;
                         &:hover {
                             color: #CD5360;
+                            border-color: #CD5360;
                         }
                     }
-                    em {font-style: normal; margin: 0 3px; font-size: 12px; font-weight: 500;}
+                    em {font-style: normal; margin: 0 5px; font-size: 12px; font-weight: 500;}
                 }
             }
         }

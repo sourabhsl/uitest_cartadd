@@ -24,7 +24,7 @@ const Shop = () => {
 
 
     useEffect(() => {
-    total();
+        total();
     }, [cart]);
 
     const total = () => {};
@@ -35,37 +35,29 @@ const Shop = () => {
         cart.forEach (item => {
             totalVal += item.price;
         } )
-
         // console.log(totalVal)
-
         setCartTotal(totalVal)
         calculateTax(totalVal)
-
-        
     }
     
     const calculateTax =(totalVal) => {
         const decVal = totalVal > 0 ? (parseFloat(totalVal) * 10/100).toFixed(2) : 0;
-    
         setTaxTotal (decVal)
         calculateGrandTotal(totalVal, decVal)
     }
 
     const calculateGrandTotal =(cartTotal, taxTotal) => {
         // console.log(cartTotal);
-
         if (cartTotal > 0) {
             setGrandTotal((parseFloat(cartTotal) + parseFloat(taxTotal)).toFixed(2));
         } else {
             setGrandTotal(0) 
         }
     }
-    
 
     const addToCart = (el) => {
         let hardCopy = [];
         hardCopy = cart.filter((cartItem) => cartItem.id !== el.id);
-
         console.log(hardCopy);
         setCart([...hardCopy, el]);
         calculateTotal([...hardCopy, el]);
@@ -78,8 +70,6 @@ const Shop = () => {
         setCart(hardCopy);
         calculateTotal(hardCopy);
     };
-
-    
 
     const listItems = products.map((el) => (
         <div key={el.id} className="card">
@@ -116,9 +106,9 @@ const Shop = () => {
             <div className="quantity">
                 <a href="#."  onClick={() => removeFromCart(el)}><span class="material-symbols-outlined f-14">close</span></a>
                 {/* <div className="number">
-                    <span class="material-symbols-outlined" onClick={decrementCounter}>add_box</span>
+                    <span class="material-symbols-outlined" onClick={decrementCounter}>remove</span>
                     <em className="count">{counter}</em>
-                    <span class="material-symbols-outlined" onClick={incrementCounter}>add_box</span>
+                    <span class="material-symbols-outlined" onClick={incrementCounter}>add</span>
                 </div> */}
             </div>
             
