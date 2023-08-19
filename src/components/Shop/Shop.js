@@ -35,7 +35,7 @@ const Shop = () => {
             totalVal += (item.price * item.qty);
         } )
         // console.log(totalVal)
-        setCartTotal(totalVal)
+        setCartTotal((parseFloat(totalVal)).toFixed(2));
         calculateTax(totalVal)
     }
     
