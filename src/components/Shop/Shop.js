@@ -30,10 +30,9 @@ const Shop = () => {
     const total = () => {};
 
     const calculateTotal = (cart = []) => {
-        // console.log(cart)
         let totalVal = 0;
         cart.forEach (item => {
-            totalVal += item.price;
+            totalVal += (item.price * item.qty);
         } )
         // console.log(totalVal)
         setCartTotal(totalVal)
@@ -55,12 +54,17 @@ const Shop = () => {
         }
     }
 
-    const addToCart = (el) => {
-        let hardCopy = [];
-        hardCopy = cart.filter((cartItem) => cartItem.id !== el.id);
-        console.log(hardCopy);
-        setCart([...hardCopy, el]);
-        calculateTotal([...hardCopy, el]);
+    const addToCart = (el, qtyToUpdate = 1) => {
+        const cartCopy = cart.slice();
+        const index = cartCopy.findIndex((cartItem) => cartItem.id === el.id);
+        if(index === - 1) {
+            cartCopy.push({ ...el, qty: 1 });
+        } else {
+            const copyProduct = cartCopy[index];
+            cartCopy[index] = { ...copyProduct, qty: copyProduct.qty + qtyToUpdate }
+        }
+        setCart(cartCopy);
+        calculateTotal(cartCopy);
     };
 
     const removeFromCart = (el) => {
@@ -88,12 +92,23 @@ const Shop = () => {
     ));
 
     const [counter, setCounter] = useState(1);
-    const incrementCounter = () => setCounter(counter + 1);
-    let decrementCounter = () => setCounter(counter - 1);
+    // const incrementCounter = () => setCounter(counter + 1);
+    // let decrementCounter = () => setCounter(counter - 1);
        
-    if(counter<=1) {
-        decrementCounter = () => setCounter(1);
+    // if(counter<=1) {
+    //     decrementCounter = () => setCounter(1);
+    // }
+
+    const updateProductQty = (el, qtyToUpdate) => {
+        if(el.qty <= 1 && qtyToUpdate < 0) {
+            removeFromCart(el)
+        } else {
+
+            addToCart(el, qtyToUpdate)
+        }
     }
+
+
 
     const cartItems = cart.map((el) => (
         <div key={el.id} className="card">
@@ -105,11 +120,11 @@ const Shop = () => {
             </div>
             <div className="quantity">
                 <a href="#."  onClick={() => removeFromCart(el)}><span class="material-symbols-outlined f-14">close</span></a>
-                {/* <div className="number">
-                    <span class="material-symbols-outlined" onClick={decrementCounter}>remove</span>
-                    <em className="count">{counter}</em>
-                    <span class="material-symbols-outlined" onClick={incrementCounter}>add</span>
-                </div> */}
+                <div className="number">
+                    <span class="material-symbols-outlined" onClick={() => updateProductQty(el, -1)}>remove</span>
+                    <em className="count">{el.qty}</em>
+                    <span class="material-symbols-outlined" onClick={() => updateProductQty(el)}>add</span>
+                </div>
             </div>
             
         </div>
